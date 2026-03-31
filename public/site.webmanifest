@@ -1,0 +1,16 @@
+{
+  "name": "Golden Heart Orphanage",
+  "short_name": "Golden Heart",
+  "description": "Supporting orphaned and vulnerable children through structured education, care, and development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fefcf9",
+  "theme_color": "#0a1929",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

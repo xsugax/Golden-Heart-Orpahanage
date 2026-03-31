@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import JsonLd from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://goldenheartorphanage.org"),
   title: {
     default: "Golden Heart Orphanage — Supporting Vulnerable Children",
     template: "%s | Golden Heart Orphanage",
@@ -28,6 +30,10 @@ export const metadata: Metadata = {
     "humanitarian",
     "education",
     "support",
+    "non-profit",
+    "South Africa",
+    "golden heart",
+    "vulnerable children",
   ],
   openGraph: {
     title: "Golden Heart Orphanage — Supporting Vulnerable Children",
@@ -37,16 +43,33 @@ export const metadata: Metadata = {
     siteName: "Golden Heart Orphanage",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Golden Heart Orphanage — Every child deserves a chance",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Golden Heart Orphanage",
     description:
       "Support orphaned and vulnerable children through structured education, care, and development.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-touch-icon.png",
+  },
+  other: {
+    "theme-color": "#0a1929",
   },
 };
 
@@ -62,6 +85,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <JsonLd />
         {children}
       </body>
     </html>
