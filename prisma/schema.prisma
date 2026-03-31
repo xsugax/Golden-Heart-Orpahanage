@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  name      String
+  email     String     @unique
+  createdAt DateTime   @default(now())
+  donations Donation[]
+}
+
+model Donation {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Float
+  frequency String   // one-time, daily, weekly, monthly
+  tier      String?
+  stripeSessionId String? @unique
+  stripeSubscriptionId String?
+  status    String   @default("pending") // pending, completed, failed
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Story {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  imageUrl  String
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ImpactMetrics {
+  id                String   @id @default(cuid())
+  childrenSupported Int      @default(0)
+  programsActive    Int      @default(0)
+  mealsServed       Int      @default(0)
+  communitiesReached Int     @default(0)
+  lastUpdated       DateTime @default(now()) @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
