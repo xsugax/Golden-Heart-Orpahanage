@@ -3,7 +3,8 @@
 import { useState, FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { Lock, Heart, Eye, EyeOff } from "lucide-react";
+import { Lock, Eye, EyeOff } from "lucide-react";
+import { LogoIcon } from "@/components/brand/Logo";
 
 function LoginForm() {
   const router = useRouter();
@@ -46,8 +47,8 @@ function LoginForm() {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gold-500/10 mb-4">
-            <Heart className="w-8 h-8 text-gold-500 fill-gold-400" />
+          <div className="inline-flex items-center justify-center mb-4">
+            <LogoIcon size={64} />
           </div>
           <h1 className="text-2xl font-bold text-white">Admin Portal</h1>
           <p className="text-earth-400 text-sm mt-1">

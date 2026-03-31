@@ -9,8 +9,8 @@ import {
   MessageSquare,
   DollarSign,
   Settings,
-  Heart,
 } from "lucide-react";
+import { LogoIcon } from "@/components/brand/Logo";
 import LogoutButton from "./LogoutButton";
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <aside className="w-64 bg-earth-900 min-h-screen p-6 hidden md:flex flex-col">
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-1">
-              <Heart className="w-6 h-6 text-gold-500 fill-gold-400" />
+              <LogoIcon size={28} />
               <h2 className="text-lg font-bold text-white">Admin Panel</h2>
             </div>
             <p className="text-xs text-earth-400 mt-1">
@@ -74,7 +74,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <div className="md:hidden bg-earth-900 w-full p-4 fixed top-0 z-50">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <Heart className="w-5 h-5 text-gold-500 fill-gold-400" />
+              <LogoIcon size={24} />
               <h2 className="text-base font-bold text-white">Admin</h2>
             </div>
             <div className="flex gap-3">

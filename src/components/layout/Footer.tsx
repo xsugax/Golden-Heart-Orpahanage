@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Heart, Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowUpRight } from "lucide-react";
+import Logo from "@/components/brand/Logo";
 
 const footerLinks = {
   organization: [
@@ -52,18 +53,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-                <Heart className="w-5 h-5 text-white fill-white" />
-              </div>
-              <div>
-                <p className="text-lg font-bold text-white tracking-tight">
-                  Golden Heart
-                </p>
-                <p className="text-[10px] text-navy-500 uppercase tracking-[0.2em] font-medium">
-                  Orphanage
-                </p>
-              </div>
+            <div className="mb-5">
+              <Logo size="md" variant="full" theme="dark" />
             </div>
             <p className="text-sm text-navy-400 leading-relaxed mb-6 max-w-sm">
               Supporting orphaned and vulnerable children through structured
