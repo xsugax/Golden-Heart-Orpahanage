@@ -20,6 +20,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
+
     // Upsert: update existing or create new
     const existing = await prisma.impactMetrics.findFirst();
 

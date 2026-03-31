@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const donations = await prisma.donation.findMany({
       orderBy: { createdAt: "desc" },
       include: { user: true },

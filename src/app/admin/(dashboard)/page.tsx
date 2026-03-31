@@ -7,6 +7,7 @@ async function getStats() {
   const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
   try {
+    if (!prisma) throw new Error("Database not configured");
     const [
       totalDonors,
       totalDonations,

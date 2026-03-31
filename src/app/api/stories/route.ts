@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
+    if (!prisma) return NextResponse.json([]);
     const stories = await prisma.story.findMany({
       where: { published: true },
       orderBy: { createdAt: "desc" },

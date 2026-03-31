@@ -9,6 +9,7 @@ export async function PATCH(
     const { id } = await params;
     const body = await req.json();
 
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const story = await prisma.story.update({
       where: { id },
       data: body,
@@ -31,6 +32,7 @@ export async function DELETE(
   try {
     const { id } = await params;
 
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     await prisma.story.delete({ where: { id } });
 
     return NextResponse.json({ success: true });

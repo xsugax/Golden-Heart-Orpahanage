@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     try {
+      if (!prisma) throw new Error("No database");
       await prisma.contactMessage.create({
         data: {
           name: name.trim(),

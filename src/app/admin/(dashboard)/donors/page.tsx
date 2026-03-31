@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 
 async function getDonors() {
   try {
+    if (!prisma) throw new Error("Database not configured");
     const donors = await prisma.user.findMany({
       orderBy: { createdAt: "desc" },
       include: {

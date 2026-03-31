@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const stories = await prisma.story.findMany({
       orderBy: { createdAt: "desc" },
     });
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const story = await prisma.story.create({
       data: {
         title: title.trim(),

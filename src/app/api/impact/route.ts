@@ -10,6 +10,7 @@ const defaultMetrics = {
 
 export async function GET() {
   try {
+    if (!prisma) return NextResponse.json(defaultMetrics);
     const metrics = await prisma.impactMetrics.findFirst({
       orderBy: { lastUpdated: "desc" },
     });

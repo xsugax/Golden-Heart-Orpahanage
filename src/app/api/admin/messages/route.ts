@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const messages = await prisma.contactMessage.findMany({
       orderBy: { createdAt: "desc" },
     });
@@ -28,6 +29,7 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const message = await prisma.contactMessage.update({
       where: { id },
       data: { read },
@@ -55,6 +57,7 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
+    if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     await prisma.contactMessage.delete({ where: { id } });
 
     return NextResponse.json({ success: true });

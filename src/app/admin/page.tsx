@@ -3,6 +3,7 @@ import { DollarSign, Users, TrendingUp, Calendar } from "lucide-react";
 
 async function getStats() {
   try {
+    if (!prisma) throw new Error("Database not configured");
     const [totalDonors, totalDonations, recentDonations, totalAmount] =
       await Promise.all([
         prisma.user.count(),

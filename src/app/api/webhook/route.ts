@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
   try {
     switch (event.type) {
       case "checkout.session.completed": {
+        if (!prisma) break;
         const session = event.data.object;
         const customerEmail =
           session.customer_details?.email || "anonymous@donor.com";
@@ -62,6 +63,7 @@ export async function POST(req: NextRequest) {
       }
 
       case "invoice.payment_succeeded": {
+        if (!prisma) break;
         const invoice = event.data.object;
         const subscriptionId = (invoice as unknown as Record<string, unknown>).subscription as string;
         const customerEmail =
