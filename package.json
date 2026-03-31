@@ -6,7 +6,7 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "build:render": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
     "lint": "eslint"
   },
   "dependencies": {
