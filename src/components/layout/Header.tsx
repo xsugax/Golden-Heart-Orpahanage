@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, ArrowRight, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "@/components/brand/Logo";
@@ -21,29 +21,28 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [lastY, setLastY] = useState(0);
-
-  const handleScroll = useCallback(() => {
-    const y = window.scrollY;
-    setScrolled(y > 20);
-    // Hide header on scroll down, show on scroll up (after 100px)
-    if (y > 100) {
-      setHidden(y > lastY && y - lastY > 5);
-    } else {
-      setHidden(false);
-    }
-    setLastY(y);
-  }, [lastY]);
+  const lastY = useRef(0);
 
   useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        setScrolled(y > 20);
+        if (y > 100) {
+          setHidden(y > lastY.current && y - lastY.current > 5);
+        } else {
+          setHidden(false);
+        }
+        lastY.current = y;
+        ticking = false;
+      });
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -78,7 +77,7 @@ export default function Header() {
           </div>
         )}
 
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 touch-manipulation">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
             {/* Logo */}
             <Link href="/" className="relative group flex items-center" aria-label="Golden Heart Orphanage Home">
@@ -122,7 +121,7 @@ export default function Header() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden relative p-2.5 text-navy-700 rounded-xl hover:bg-navy-50 transition-colors"
+              className="lg:hidden relative p-3 -mr-1 text-navy-700 rounded-xl hover:bg-navy-50 active:bg-navy-100 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
@@ -161,8 +160,9 @@ export default function Header() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white z-50 shadow-2xl"
+              transition={{ type: "spring", damping: 28, stiffness: 350 }}
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white z-50 shadow-2xl will-change-transform"
+              style={{ WebkitOverflowScrolling: "touch" }}
             >
               <div className="flex flex-col h-full">
                 {/* Drawer Header */}
@@ -189,7 +189,7 @@ export default function Header() {
                       >
                         <Link
                           href={item.href}
-                          className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-[15px] font-medium transition-colors ${
+                          className={`flex items-center gap-3 px-4 py-4 rounded-xl text-[15px] font-medium transition-colors active:scale-[0.98] ${
                             isActive(item.href)
                               ? "bg-navy-50 text-navy-900 border-l-2 border-amber-500"
                               : "text-navy-600 hover:bg-navy-50 hover:text-navy-900"
@@ -210,7 +210,7 @@ export default function Header() {
                 <div className="p-5 border-t border-navy-100 space-y-3">
                   <Link
                     href="/donate"
-                    className="flex items-center justify-center gap-2 w-full px-5 py-3.5 bg-navy-900 text-white font-semibold rounded-xl hover:bg-navy-800 transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full px-5 py-4 bg-navy-900 text-white font-semibold rounded-xl hover:bg-navy-800 active:bg-navy-700 active:scale-[0.98] transition-all text-sm"
                     onClick={() => setMobileOpen(false)}
                   >
                     <Heart className="w-4 h-4 fill-amber-400 text-amber-400" />
