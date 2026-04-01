@@ -99,8 +99,8 @@ export default async function OGImage() {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div style={{ fontSize: 28, fontWeight: 700, color: "#fbbf24" }}>247+</div>
-            <div style={{ fontSize: 13, color: "#829ab1", marginTop: 2 }}>Children</div>
+            <div style={{ fontSize: 28, fontWeight: 700, color: "#fbbf24" }}>2,400+</div>
+            <div style={{ fontSize: 13, color: "#829ab1", marginTop: 2 }}>Lives Transformed</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div style={{ fontSize: 28, fontWeight: 700, color: "#2dd4bf" }}>15</div>

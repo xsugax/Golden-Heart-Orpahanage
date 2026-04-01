@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const impactNumbers = [
-  { number: "247+", label: "Children Supported" },
+  { number: "2,400+", label: "Lives Transformed" },
   { number: "12", label: "Active Programs" },
   { number: "8,500+", label: "Meals Served Monthly" },
   { number: "15", label: "Communities Reached" },
@@ -28,7 +28,7 @@ const fundAllocation = [
 
 const milestones = [
   {
-    year: "2015",
+    year: "2010",
     title: "Foundation",
     description:
       "Golden Heart Orphanage was established with 12 children and a single volunteer team.",
@@ -59,9 +59,9 @@ const milestones = [
   },
   {
     year: "2025",
-    title: "247 Children Supported",
+    title: "2,400 Lives Transformed",
     description:
-      "Reached our milestone of supporting over 240 children with comprehensive care.",
+      "Reached our milestone of transforming over 2,400 lives through comprehensive care, education, and community support.",
   },
 ];
 

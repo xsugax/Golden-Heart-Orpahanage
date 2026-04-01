@@ -7,28 +7,6 @@ import { Heart, ArrowRight } from "lucide-react";
 
 const children = [
   {
-    name: "Amara",
-    age: 7,
-    dream: "To become a doctor",
-    story:
-      "Amara lost both parents before she could form memories of them. When she arrived at Golden Heart, she wouldn't speak for three weeks. Today, she reads aloud to the younger children every night before bed — and tells everyone she'll be a doctor so no one else has to lose their mom and dad.",
-    image:
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    need: "$10/day covers her full care and education",
-    progress: 68,
-  },
-  {
-    name: "Thabo",
-    age: 11,
-    dream: "To build houses for his community",
-    story:
-      "After floods destroyed his village, Thabo walked for two days to find help. He arrived barefoot and hungry. Three years later, he's the top student in his class and spends weekends drawing blueprints of houses he says 'can't be washed away.' He hasn't forgotten where he came from.",
-    image:
-      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-    need: "$10/day gives him safety, school, and meals",
-    progress: 42,
-  },
-  {
     name: "Naledi",
     age: 9,
     dream: "To teach other girls to read",
@@ -38,6 +16,28 @@ const children = [
       "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     need: "$10/day keeps her safe, fed, and in school",
     progress: 55,
+  },
+  {
+    name: "Kofi",
+    age: 10,
+    dream: "To become an engineer",
+    story:
+      "Kofi lost his father to illness and his mother couldn't afford to feed four children. He arrived at Golden Heart clutching a toy car he'd built from wire and bottle caps. Within a year, he was building circuits from donated electronics. His teacher says he takes apart everything — just to understand how it works. He wants to build bridges one day, 'so no village is ever cut off again.'",
+    image:
+      "https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    need: "$10/day gives him safety, school, and meals",
+    progress: 38,
+  },
+  {
+    name: "Amahle",
+    age: 6,
+    dream: "To be a nurse like mama was",
+    story:
+      "Amahle was brought to Golden Heart by a neighbor after both parents passed within weeks of each other. She arrived barefoot, holding a photograph she couldn't explain. For months she carried it everywhere. Now she bandages stuffed animals, lines them up in rows, and 'checks their heartbeat' with a plastic stethoscope. She says her mama is watching from the sky — and she wants to make her proud.",
+    image:
+      "https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    need: "$10/day covers her full care and education",
+    progress: 24,
   },
 ];
 
@@ -150,7 +150,7 @@ export default function ChildSpotlight() {
         <AnimatedSection delay={0.2}>
           <div className="mt-16 text-center">
             <p className="text-slate-400 text-sm mb-4">
-              There are 244 more children just like them — waiting.
+              Over 300 more children just like them — still waiting.
             </p>
             <Link
               href="/donate"

@@ -52,7 +52,7 @@ export default function Hero() {
               <span className="text-teal-300 font-medium">Since 2010</span>
             </span>
             <span className="w-px h-3.5 bg-white/20" />
-            <span className="text-navy-300">247+ lives transformed</span>
+            <span className="text-navy-300">2,400+ lives transformed</span>
           </motion.div>
 
           {/* Headline */}
@@ -158,8 +158,8 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="grid grid-cols-3 gap-8 text-center">
             <div>
-              <p className="text-2xl md:text-3xl font-bold text-white">247+</p>
-              <p className="text-[11px] md:text-xs text-navy-400 mt-0.5 font-medium">Children Supported</p>
+              <p className="text-2xl md:text-3xl font-bold text-white">2,400+</p>
+              <p className="text-[11px] md:text-xs text-navy-400 mt-0.5 font-medium">Lives Transformed</p>
             </div>
             <div className="border-x border-white/[0.06]">
               <p className="text-2xl md:text-3xl font-bold text-white">15</p>

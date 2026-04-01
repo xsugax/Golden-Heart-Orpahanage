@@ -34,14 +34,14 @@ const transformations = [
       description:
         "Sibusiso was found living alone after his grandmother passed. He survived by collecting recyclables for food money. He hadn't bathed in weeks and was severely underweight.",
       image:
-        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     },
     after: {
       title: "Five years later",
       description:
         "Sibusiso is now a confident young man who leads the school's STEM club. He built a working solar lamp from scraps and won a regional science fair. He wants to be an engineer — and no one doubts he will be.",
       image:
-        "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1504159506876-f8338247a14a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     },
     sponsoredBy: "A $25/week donor",
   },
@@ -53,7 +53,7 @@ const transformations = [
       description:
         "Mercy was rescued from an overcrowded shelter where she shared a single blanket with four other children. She suffered from chronic malnutrition and couldn't walk properly due to untreated injuries.",
       image:
-        "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     },
     after: {
       title: "Five years later",

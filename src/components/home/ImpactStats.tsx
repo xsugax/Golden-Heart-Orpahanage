@@ -4,7 +4,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import { useEffect, useState } from "react";
 
 const stats = [
-  { label: "Children Supported", value: 247, suffix: "+" },
+  { label: "Lives Transformed", value: 2400, suffix: "+" },
   { label: "Programs Active", value: 12, suffix: "" },
   { label: "Meals Served Monthly", value: 8500, suffix: "+" },
   { label: "Communities Reached", value: 15, suffix: "" },

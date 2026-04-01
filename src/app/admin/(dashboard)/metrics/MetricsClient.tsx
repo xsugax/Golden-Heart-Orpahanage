@@ -14,7 +14,7 @@ interface Metrics {
 
 export default function MetricsAdminPage() {
   const [metrics, setMetrics] = useState<Metrics>({
-    childrenSupported: 247,
+    childrenSupported: 2400,
     programsActive: 12,
     mealsServed: 8500,
     communitiesReached: 15,
