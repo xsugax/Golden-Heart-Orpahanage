@@ -1,4 +1,4 @@
-import SectionHeading from "@/components/ui/SectionHeading";
+ import SectionHeading from "@/components/ui/SectionHeading";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";

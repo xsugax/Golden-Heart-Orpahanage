@@ -35,7 +35,7 @@ const children = [
     story:
       "Amahle was brought to Golden Heart by a neighbor after both parents passed within weeks of each other. She arrived barefoot, holding a photograph she couldn't explain. For months she carried it everywhere. Now she bandages stuffed animals, lines them up in rows, and 'checks their heartbeat' with a plastic stethoscope. She says her mama is watching from the sky — and she wants to make her proud.",
     image:
-      "https://images.unsplash.com/photo-1588653948445-eea74875ca86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1649263537861-c947d1fbebdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     need: "$10/day covers her full care and education",
     progress: 24,
   },
