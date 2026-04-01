@@ -253,10 +253,11 @@ export default function RootLayout({
 
         <JsonLd />
         {children}
-        {/* Smartsupp Live Chat */}
+        {/* Smartsupp Live Chat — hidden on /admin pages */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
+              if(!window.location.pathname.startsWith('/admin')){
               var _smartsupp = _smartsupp || {};
               _smartsupp.key = 'f12cab583210e0d1fc0834f9f53f193da2a47587';
               window.smartsupp||(function(d) {
@@ -265,6 +266,7 @@ export default function RootLayout({
                 c.type='text/javascript'; c.charset='utf-8'; c.async=true;
                 c.src='https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c,s);
               })(document);
+              }
             `,
           }}
         />
