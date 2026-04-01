@@ -87,6 +87,21 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <JsonLd />
         {children}
+        {/* Smartsupp Live Chat */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              var _smartsupp = _smartsupp || {};
+              _smartsupp.key = 'f12cab583210e0d1fc0834f9f53f193da2a47587';
+              window.smartsupp||(function(d) {
+                var s,c,o=smartsupp=function(){ o._.push(arguments)}; o._=[];
+                s=d.getElementsByTagName('script')[0]; c=d.createElement('script');
+                c.type='text/javascript'; c.charset='utf-8'; c.async=true;
+                c.src='https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c,s);
+              })(document);
+            `,
+          }}
+        />
       </body>
     </html>
   );

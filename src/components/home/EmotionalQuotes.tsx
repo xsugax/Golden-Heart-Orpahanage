@@ -18,18 +18,23 @@ const quotes = [
   },
   {
     text: "My teacher said I could be anything. I want to be a teacher too, so I can tell other kids the same thing.",
-    name: "Zanele, 12",
+    name: "Emma, 12",
     context: "Now tutoring younger children",
   },
   {
     text: "Before I came here, I ate once a day. Sometimes not even that. Now I never go to bed hungry.",
-    name: "Bongani, 9",
+    name: "Ravi, 9",
     context: "Rescued from extreme poverty",
   },
   {
     text: "Someone donated for me. I don't know who they are, but I think about them every day. I want to make them proud.",
     name: "Nkemba, 13",
     context: "Sponsored child since 2022",
+  },
+  {
+    text: "I didn't know what a birthday was until I came here. They gave me a cake with candles and everyone sang. I cried.",
+    name: "Katya, 7",
+    context: "Celebrated her first birthday at Golden Heart",
   },
 ];
 

@@ -27,6 +27,25 @@ const transformations = [
     sponsoredBy: "Monthly donors like you",
   },
   {
+    name: "Liam",
+    age: "6 → 11",
+    before: {
+      title: "When he arrived",
+      description:
+        "Liam was placed in care after a house fire left him without family or belongings. He was withdrawn, wouldn't eat for days, and flinched at loud noises. He carried a burnt photograph in his pocket.",
+      image:
+        "https://images.unsplash.com/photo-1545696563-a20e29b1a24a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    },
+    after: {
+      title: "Five years later",
+      description:
+        "Liam now leads the junior football team and volunteers to help new arrivals feel welcome — because he remembers what it felt like. He wants to be a firefighter. 'So I can save people like someone saved me.'",
+      image:
+        "https://images.unsplash.com/photo-1504159506876-f8338247a14a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    },
+    sponsoredBy: "A family from London",
+  },
+  {
     name: "Sibusiso",
     age: "9 → 14",
     before: {

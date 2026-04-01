@@ -18,6 +18,17 @@ const children = [
     progress: 55,
   },
   {
+    name: "Mila",
+    age: 7,
+    dream: "To paint pictures that make people happy",
+    story:
+      "Mila was placed in care after her single mother could no longer provide for her. She arrived quiet, clutching a box of crayons — the only thing she brought. Within weeks, she'd covered every surface she could find with colour. Her drawings line the hallway now. She draws families — always families — with big smiles and bright suns. 'Colours fix things,' she whispers. 'Even the sad parts.'",
+    image:
+      "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    need: "$10/day covers her full care and education",
+    progress: 31,
+  },
+  {
     name: "Kofi",
     age: 10,
     dream: "To become an engineer",
@@ -27,6 +38,17 @@ const children = [
       "https://images.unsplash.com/photo-1472673630503-c6bfba62adbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     need: "$10/day gives him safety, school, and meals",
     progress: 38,
+  },
+  {
+    name: "Arjun",
+    age: 8,
+    dream: "To become a pilot",
+    story:
+      "Arjun arrived at Golden Heart after being displaced by floods that destroyed his community. He didn't speak for the first month — just watched the sky. Then one afternoon he folded a paper aeroplane and launched it off the balcony. He stood there, watching it glide, and smiled for the first time. Now he builds a new one every day, each more detailed than the last. 'One day,' he says, 'I'll fly for real — and bring supplies to people like us.'",
+    image:
+      "https://images.unsplash.com/photo-1545696563-a20e29b1a24a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    need: "$10/day gives him shelter, meals, and school",
+    progress: 19,
   },
   {
     name: "Amahle",
