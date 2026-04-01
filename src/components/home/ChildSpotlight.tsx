@@ -45,8 +45,7 @@ const children = [
     dream: "To become a pilot",
     story:
       "Arjun arrived at Golden Heart after being displaced by floods that destroyed his community. He didn't speak for the first month — just watched the sky. Then one afternoon he folded a paper aeroplane and launched it off the balcony. He stood there, watching it glide, and smiled for the first time. Now he builds a new one every day, each more detailed than the last. 'One day,' he says, 'I'll fly for real — and bring supplies to people like us.'",
-    image:
-      "https://images.unsplash.com/photo-1545696563-a20e29b1a24a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "/images/arjun.jpg",
     need: "$10/day gives him shelter, meals, and school",
     progress: 19,
   },
