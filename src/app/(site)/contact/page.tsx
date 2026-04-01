@@ -3,7 +3,7 @@
 import { useState, FormEvent } from "react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Button from "@/components/ui/Button";
-import { Mail, MapPin, Phone, Clock, Send } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Clock, Send } from "lucide-react";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState({
@@ -80,11 +80,11 @@ export default function ContactPage() {
 
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
-                      <Phone className="w-5 h-5" />
+                      <MessageCircle className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="font-medium text-navy-900">Phone</p>
-                      <p className="text-sm text-slate-600">+1 (555) 123-4567</p>
+                      <p className="font-medium text-navy-900">Live Chat</p>
+                      <p className="text-sm text-slate-600">Chat with us via the widget below</p>
                     </div>
                   </div>
 
@@ -95,8 +95,6 @@ export default function ContactPage() {
                     <div>
                       <p className="font-medium text-navy-900">Address</p>
                       <p className="text-sm text-slate-600">
-                        123 Hope Street
-                        <br />
                         Johannesburg, South Africa
                       </p>
                     </div>

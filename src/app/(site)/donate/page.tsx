@@ -14,16 +14,14 @@ import {
   Sparkles,
   Users,
   Shield,
-  CreditCard,
   Zap,
-  Wallet,
   Bitcoin,
   Copy,
   ExternalLink,
+  MessageCircle,
 } from "lucide-react";
-import EmbeddedCardForm from "@/components/donate/EmbeddedCardForm";
 
-type PaymentMethod = "card" | "paypal" | "crypto";
+type PaymentMethod = "crypto";
 
 type Frequency = "one-time" | "daily" | "weekly" | "monthly";
 
@@ -149,7 +147,7 @@ export default function DonatePage() {
   const [selectedAmount, setSelectedAmount] = useState<number>(10);
   const [customAmount, setCustomAmount] = useState("");
   const [isCustom, setIsCustom] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("crypto");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState("");
@@ -200,17 +198,13 @@ export default function DonatePage() {
   }
 
   async function handleDonate() {
-    if (activeAmount < 1) return;
-    // Card payments are handled inline by EmbeddedCardForm — this only handles PayPal and Crypto
-    if (paymentMethod === "card") return;
+    // Crypto is the only payment method
+    if (paymentMethod !== "crypto") return;
     setLoading(true);
     setError("");
 
     try {
-      const endpoint =
-        paymentMethod === "crypto"
-          ? "/api/donate/crypto"
-          : "/api/donate/paypal";
+      const endpoint = "/api/donate/crypto";
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -276,8 +270,7 @@ export default function DonatePage() {
                 <Shield className="w-4 h-4 text-teal-400" /> Secure Payments
               </span>
               <span className="flex items-center gap-1.5">
-                <CreditCard className="w-4 h-4 text-teal-400" /> Apple Pay &
-                Google Pay
+                <Bitcoin className="w-4 h-4 text-teal-400" /> Bitcoin & Crypto
               </span>
               <span className="flex items-center gap-1.5">
                 <Zap className="w-4 h-4 text-teal-400" /> Tax Deductible
@@ -521,77 +514,33 @@ export default function DonatePage() {
                 </div>
               )}
 
-              {/* Step 3: Payment Method */}
+              {/* Step 3: Payment */}
               <div className="p-6 md:p-8 border-b border-slate-100">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center text-sm font-bold">
                     3
                   </div>
                   <h2 className="text-xl font-semibold text-navy-900">
-                    Choose Payment Method
+                    Send Your Donation via Crypto
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {/* Card Option */}
-                  <button
-                    onClick={() => setPaymentMethod("card")}
-                    className={`relative p-5 rounded-xl border-2 text-left transition-all ${
-                      paymentMethod === "card"
-                        ? "border-amber-500 bg-amber-50 ring-2 ring-amber-200"
-                        : "border-slate-200 hover:border-amber-300"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center">
-                        <CreditCard className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-navy-900">Credit / Debit Card</p>
-                        <p className="text-xs text-slate-500">Visa, Mastercard, Amex</p>
-                      </div>
+                <div className="p-4 bg-teal-50 border border-teal-200 rounded-xl mb-6">
+                  <div className="flex items-start gap-3">
+                    <Bitcoin className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-teal-800">We accept cryptocurrency donations</p>
+                      <p className="text-sm text-teal-700 mt-1">
+                        Send BTC, ETH, USDT, or USDC to the wallet addresses below.
+                        For other payment methods, please{" "}
+                        <a href="mailto:goldenheartorphanage01@gmail.com" className="font-semibold underline">contact our support team</a>{" "}
+                        or use the live chat.
+                      </p>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <Shield className="w-3 h-3" />
-                      <span>Stripe • Apple Pay • Google Pay</span>
-                    </div>
-                    {paymentMethod === "card" && (
-                      <div className="absolute top-3 right-3 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                    )}
-                  </button>
+                  </div>
+                </div>
 
-                  {/* PayPal Option */}
-                  <button
-                    onClick={() => setPaymentMethod("paypal")}
-                    className={`relative p-5 rounded-xl border-2 text-left transition-all ${
-                      paymentMethod === "paypal"
-                        ? "border-amber-500 bg-amber-50 ring-2 ring-amber-200"
-                        : "border-slate-200 hover:border-amber-300"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center">
-                        <Wallet className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-navy-900">PayPal</p>
-                        <p className="text-xs text-slate-500">PayPal Balance or Bank</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <Shield className="w-3 h-3" />
-                      <span>200+ countries • Buyer protection</span>
-                    </div>
-                    {paymentMethod === "paypal" && (
-                      <div className="absolute top-3 right-3 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                    )}
-                  </button>
-
-                  {/* Crypto Option */}
+                <div className="hidden">{/* Crypto is the only method */}
                   <button
                     onClick={() => setPaymentMethod("crypto")}
                     className={`relative p-5 rounded-xl border-2 text-left transition-all ${
@@ -633,67 +582,6 @@ export default function DonatePage() {
                   </h2>
                 </div>
 
-                {paymentMethod === "card" ? (
-                  <EmbeddedCardForm
-                    amount={activeAmount}
-                    frequency={frequency}
-                    tier={
-                      isCustom
-                        ? "custom"
-                        : currentTiers.find((t) => t.amount === selectedAmount)
-                            ?.name || "custom"
-                    }
-                    frequencyUnit={frequencyUnit}
-                  />
-                ) : paymentMethod === "paypal" ? (
-                  <>
-                    <p className="text-sm text-slate-600 mb-6">
-                      You will be redirected to PayPal to complete your{" "}
-                      <strong className="text-navy-800">
-                        {frequency === "one-time" ? "one-time" : frequency}
-                      </strong>{" "}
-                      donation of{" "}
-                      <strong className="text-navy-900">
-                        ${activeAmount.toLocaleString()}
-                        {frequencyUnit}
-                      </strong>
-                      . Pay with your PayPal balance, bank account, or linked card.
-                    </p>
-
-                    {error && (
-                      <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
-                        {error}
-                      </div>
-                    )}
-
-                    <Button
-                      onClick={handleDonate}
-                      disabled={loading || activeAmount < 1}
-                      size="lg"
-                      className="w-full text-lg py-4 bg-[#0070ba] hover:bg-[#003087]"
-                    >
-                      {loading ? (
-                        "Redirecting to PayPal..."
-                      ) : (
-                        <>
-                          <Wallet className="w-5 h-5 mr-2" />
-                          Pay ${activeAmount.toLocaleString()}
-                          {frequencyUnit} with PayPal
-                        </>
-                      )}
-                    </Button>
-
-                    <div className="flex items-center justify-center gap-4 mt-4 text-xs text-slate-500">
-                      <span className="flex items-center gap-1">
-                        <Shield className="w-3 h-3" /> Buyer Protection
-                      </span>
-                      <span>•</span>
-                      <span>200+ Countries</span>
-                      <span>•</span>
-                      <span>Tax Deductible</span>
-                    </div>
-                  </>
-                ) : (
                   <>
                     <p className="text-sm text-slate-600 mb-6">
                       Send{" "}
@@ -792,8 +680,21 @@ export default function DonatePage() {
                       <span>•</span>
                       <span>Tax Deductible</span>
                     </div>
+
+                    <div className="mt-6 p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                      <div className="flex items-start gap-3">
+                        <MessageCircle className="w-5 h-5 text-navy-600 shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-sm font-medium text-navy-800">Want to donate using a different method?</p>
+                          <p className="text-sm text-slate-600 mt-1">
+                            Contact our support team via{" "}
+                            <a href="mailto:goldenheartorphanage01@gmail.com" className="text-amber-600 font-semibold underline">email</a>{" "}
+                            or use the live chat widget to discuss alternative donation options.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </>
-                )}
               </div>
             </div>
           </AnimatedSection>
@@ -804,7 +705,7 @@ export default function DonatePage() {
               <Card className="text-center py-5">
                 <Shield className="w-6 h-6 text-teal-500 mx-auto mb-2" />
                 <p className="text-sm font-semibold text-navy-800">100% Secure</p>
-                <p className="text-xs text-slate-500">Stripe Protected</p>
+                <p className="text-xs text-slate-500">Verified Wallets</p>
               </Card>
               <Card className="text-center py-5">
                 <Heart className="w-6 h-6 text-teal-500 mx-auto mb-2 fill-teal-200" />

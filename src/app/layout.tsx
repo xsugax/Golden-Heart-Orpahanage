@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   icons: {
     icon: "/icon.svg",
-    apple: "/apple-touch-icon.png",
+    apple: "/icon.svg",
   },
   other: {
     "theme-color": "#0a1929",
