@@ -160,7 +160,7 @@ export default function DonatePage() {
     {
       name: "Bitcoin (BTC)",
       symbol: "BTC",
-      address: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      address: "bc1qdpqyxrv428qp4vdlq0hpudmrpmgs5x9qcyhfa5",
       network: "Bitcoin Network",
       color: "bg-orange-500",
       icon: "₿",
@@ -168,7 +168,7 @@ export default function DonatePage() {
     {
       name: "Ethereum (ETH)",
       symbol: "ETH",
-      address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
+      address: "0x14BeaCB76970C7aD354f35aB1ca21F0e2f826cff",
       network: "ERC-20 Network",
       color: "bg-indigo-500",
       icon: "Ξ",
@@ -176,18 +176,18 @@ export default function DonatePage() {
     {
       name: "USDT (Tether)",
       symbol: "USDT",
-      address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-      network: "ERC-20 / TRC-20",
+      address: "2FbNJXqoyxfXwpe1ycT4FG5bu3RP1vckT7qSWV4zVpMD",
+      network: "Solana Network",
       color: "bg-emerald-500",
       icon: "₮",
     },
     {
-      name: "USDC",
-      symbol: "USDC",
-      address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-      network: "ERC-20 / Solana",
-      color: "bg-blue-500",
-      icon: "$",
+      name: "Solana (SOL)",
+      symbol: "SOL",
+      address: "2FbNJXqoyxfXwpe1ycT4FG5bu3RP1vckT7qSWV4zVpMD",
+      network: "Solana Network",
+      color: "bg-purple-500",
+      icon: "◎",
     },
   ];
 
@@ -531,7 +531,7 @@ export default function DonatePage() {
                     <div>
                       <p className="text-sm font-medium text-teal-800">We accept cryptocurrency donations</p>
                       <p className="text-sm text-teal-700 mt-1">
-                        Send BTC, ETH, USDT, or USDC to the wallet addresses below.
+                        Send BTC, ETH, USDT, or SOL to the wallet addresses below.
                         For other payment methods, please{" "}
                         <a href="mailto:goldenheartorphanage01@gmail.com" className="font-semibold underline">contact our support team</a>{" "}
                         or use the live chat.
@@ -555,7 +555,7 @@ export default function DonatePage() {
                       </div>
                       <div>
                         <p className="font-semibold text-navy-900">Cryptocurrency</p>
-                        <p className="text-xs text-slate-500">BTC, ETH, USDT, USDC</p>
+                        <p className="text-xs text-slate-500">BTC, ETH, USDT, SOL</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 text-xs text-slate-500">
@@ -676,7 +676,7 @@ export default function DonatePage() {
                         <Shield className="w-3 h-3" /> Verified Wallets
                       </span>
                       <span>•</span>
-                      <span>BTC • ETH • USDT • USDC</span>
+                      <span>BTC • ETH • USDT • SOL</span>
                       <span>•</span>
                       <span>Tax Deductible</span>
                     </div>
