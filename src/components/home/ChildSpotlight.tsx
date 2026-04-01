@@ -11,9 +11,9 @@ const children = [
     age: 9,
     dream: "To teach other girls to read",
     story:
-      "Naledi was found living in an abandoned building with her younger brother. She had been feeding him from scraps for months. At Golden Heart, she learned to read within six months — and now she insists on teaching every new girl who arrives. 'No one should feel stupid,' she says. 'They just need someone to show them.'",
+      "Naledi arrived at Golden Heart with her younger brother after a neighbour found them alone. In six months she taught herself to read — and now she refuses to let any new girl struggle alone. She sits beside them every evening, pointing at each word with the patience of someone twice her age. 'No one should ever feel like they can't learn,' she says. 'They just need someone who won't give up on them.'",
     image:
-      "https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1544476671-c862c8b476e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     need: "$10/day keeps her safe, fed, and in school",
     progress: 55,
   },
@@ -24,7 +24,7 @@ const children = [
     story:
       "Kofi lost his father to illness and his mother couldn't afford to feed four children. He arrived at Golden Heart clutching a toy car he'd built from wire and bottle caps. Within a year, he was building circuits from donated electronics. His teacher says he takes apart everything — just to understand how it works. He wants to build bridges one day, 'so no village is ever cut off again.'",
     image:
-      "https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1472673630503-c6bfba62adbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     need: "$10/day gives him safety, school, and meals",
     progress: 38,
   },
@@ -35,7 +35,7 @@ const children = [
     story:
       "Amahle was brought to Golden Heart by a neighbor after both parents passed within weeks of each other. She arrived barefoot, holding a photograph she couldn't explain. For months she carried it everywhere. Now she bandages stuffed animals, lines them up in rows, and 'checks their heartbeat' with a plastic stethoscope. She says her mama is watching from the sky — and she wants to make her proud.",
     image:
-      "https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1588653948445-eea74875ca86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
     need: "$10/day covers her full care and education",
     progress: 24,
   },

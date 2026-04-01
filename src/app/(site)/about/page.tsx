@@ -42,28 +42,28 @@ const team = [
     name: "Dr. Sarah Nkosi",
     role: "Executive Director",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     bio: "20+ years in child welfare and humanitarian development across Southern Africa.",
   },
   {
     name: "James Mthembu",
     role: "Head of Education",
     image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     bio: "Former school principal with a passion for accessible education for every child.",
   },
   {
     name: "Amara Okafor",
     role: "Care Programs Lead",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     bio: "Social worker dedicated to creating safe, nurturing spaces for children in need.",
   },
   {
     name: "David van der Merwe",
     role: "Operations & Finance",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
+      "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
     bio: "Ensures every dollar is maximized for child welfare with full financial transparency.",
   },
 ];
