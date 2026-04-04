@@ -2,8 +2,11 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "Terms and conditions governing the use of Golden Heart Orphanage website and services.",
+  title: "Terms of Service — Golden Heart Orphanage",
+  description: "Terms and conditions governing the use of Golden Heart Orphanage website and donation services.",
+  alternates: {
+    canonical: "https://goldenheartorphanage.org/terms",
+  },
 };
 
 export default function TermsPage() {

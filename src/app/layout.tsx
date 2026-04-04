@@ -16,29 +16,37 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://goldenheartorphanage.org"),
   title: {
-    default: "Golden Heart Orphanage — Supporting Vulnerable Children",
+    default: "Golden Heart Orphanage | Donate & Support Vulnerable Children in South Africa",
     template: "%s | Golden Heart Orphanage",
   },
   description:
-    "Golden Heart Orphanage supports orphaned and vulnerable children through structured education, care, and development—helping them build a future beyond their circumstances.",
+    "Golden Heart Orphanage is a registered non-profit supporting 2,400+ orphaned and vulnerable children in South Africa since 2010 through education, care, nutrition, and development programs. Donate today to change a child's life.",
   keywords: [
-    "orphanage",
-    "donate",
-    "children",
-    "charity",
-    "NGO",
-    "humanitarian",
-    "education",
-    "support",
-    "non-profit",
-    "South Africa",
-    "golden heart",
-    "vulnerable children",
+    "Golden Heart Orphanage",
+    "golden heart orphanage",
+    "orphanage South Africa",
+    "donate to orphanage",
+    "support orphaned children",
+    "children charity South Africa",
+    "orphan donation",
+    "NGO South Africa",
+    "humanitarian aid children",
+    "education for orphans",
+    "non-profit orphanage",
+    "sponsor a child South Africa",
+    "Johannesburg orphanage",
+    "vulnerable children support",
+    "child welfare organization",
+    "donate crypto charity",
+    "Bitcoin donation orphanage",
+    "charity for children Africa",
+    "orphan care programs",
+    "Golden Heart",
   ],
   openGraph: {
-    title: "Golden Heart Orphanage — Supporting Vulnerable Children",
+    title: "Golden Heart Orphanage | Donate & Support Vulnerable Children",
     description:
-      "Support orphaned and vulnerable children through structured education, care, and development.",
+      "Since 2010, Golden Heart Orphanage has transformed 2,400+ lives through education, care, and development. Join thousands of supporters making a difference.",
     url: "https://goldenheartorphanage.org",
     siteName: "Golden Heart Orphanage",
     locale: "en_US",
@@ -48,28 +56,45 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Golden Heart Orphanage — Every child deserves a chance",
+        alt: "Golden Heart Orphanage — Supporting 2,400+ Children Since 2010",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Golden Heart Orphanage",
+    title: "Golden Heart Orphanage | Support Vulnerable Children",
     description:
-      "Support orphaned and vulnerable children through structured education, care, and development.",
+      "Since 2010, we've transformed 2,400+ lives. Donate to support orphaned children through education, care, and development in South Africa.",
     images: ["/og-image.png"],
+    creator: "@goldenheartorg",
   },
   robots: {
     index: true,
     follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://goldenheartorphanage.org",
   },
   manifest: "/site.webmanifest",
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",
   },
+  category: "charity",
   other: {
     "theme-color": "#0a1929",
+    "google-site-verification": "pending",
+    "msvalidate.01": "pending",
   },
 };
 
@@ -81,9 +106,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      dir="ltr"
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="canonical" href="https://goldenheartorphanage.org" />
+        <meta name="author" content="Golden Heart Orphanage" />
+        <meta name="geo.region" content="ZA-GP" />
+        <meta name="geo.placename" content="Johannesburg" />
+        <meta name="geo.position" content="-26.2041;28.0473" />
+        <meta name="ICBM" content="-26.2041, 28.0473" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.smartsuppchat.com" />
+      </head>
       <body className="min-h-full flex flex-col">
         {/* Premium Splash Screen — renders instantly from server HTML */}
         <div

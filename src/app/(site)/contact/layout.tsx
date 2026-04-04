@@ -1,13 +1,25 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Golden Heart Orphanage — Get In Touch",
   description:
-    "Get in touch with Golden Heart Orphanage. We welcome your questions, partnership inquiries, and volunteer interest.",
+    "Contact Golden Heart Orphanage in Johannesburg, South Africa. Reach out for partnership inquiries, volunteer opportunities, or to learn how you can support orphaned children.",
+  alternates: {
+    canonical: "https://goldenheartorphanage.org/contact",
+  },
   openGraph: {
-    title: "Contact Us — Golden Heart Orphanage",
+    title: "Contact Golden Heart Orphanage — We'd Love to Hear From You",
     description:
-      "Reach out to learn how you can support orphaned and vulnerable children.",
+      "Reach out to learn how you can support orphaned and vulnerable children in South Africa.",
+    url: "https://goldenheartorphanage.org/contact",
+    type: "website",
+    images: ["/og-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Golden Heart Orphanage",
+    description: "Get in touch to support orphaned children in South Africa.",
+    images: ["/og-image.png"],
   },
 };
 

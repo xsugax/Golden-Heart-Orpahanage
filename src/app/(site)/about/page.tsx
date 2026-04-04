@@ -5,9 +5,19 @@ import Button from "@/components/ui/Button";
 import { Heart, Target, Eye, Users } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Golden Heart Orphanage — Our Mission, Vision & Team",
   description:
-    "Learn about Golden Heart Orphanage — our mission, vision, and the team dedicated to supporting orphaned and vulnerable children.",
+    "Founded in 2010, Golden Heart Orphanage is a non-profit in Johannesburg, South Africa dedicated to supporting 2,400+ orphaned and vulnerable children through education, care, and development.",
+  alternates: {
+    canonical: "https://goldenheartorphanage.org/about",
+  },
+  openGraph: {
+    title: "About Golden Heart Orphanage — Our Mission, Vision & Team",
+    description: "Founded in 2010 in Johannesburg, South Africa. Learn about our mission to support orphaned children through holistic care.",
+    url: "https://goldenheartorphanage.org/about",
+    type: "website",
+    images: ["/og-image.png"],
+  },
 };
 
 const values = [

@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Golden Heart Orphanage — Every child deserves a chance";
+export const alt = "Golden Heart Orphanage — Supporting 2,400+ Orphaned Children in South Africa Since 2010";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

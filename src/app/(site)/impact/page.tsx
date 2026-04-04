@@ -5,9 +5,19 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 
 export const metadata: Metadata = {
-  title: "Impact",
+  title: "Our Impact — 2,400+ Lives Transformed | Golden Heart Orphanage",
   description:
-    "See the real impact of your support — transparent reporting on how funds are used and lives changed at Golden Heart Orphanage.",
+    "See the measurable impact of Golden Heart Orphanage: 2,400+ lives transformed, 8,500+ meals monthly, 95% school attendance, 15 communities reached. Transparent reporting on every donation.",
+  alternates: {
+    canonical: "https://goldenheartorphanage.org/impact",
+  },
+  openGraph: {
+    title: "Our Impact — 2,400+ Lives Transformed | Golden Heart Orphanage",
+    description: "Transparent impact reporting: 2,400+ lives, 8,500+ meals monthly, 95% school attendance.",
+    url: "https://goldenheartorphanage.org/impact",
+    type: "website",
+    images: ["/og-image.png"],
+  },
 };
 
 const impactNumbers = [

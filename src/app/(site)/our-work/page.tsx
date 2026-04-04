@@ -21,9 +21,19 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Work",
+  title: "Our Programs & Initiatives — Golden Heart Orphanage",
   description:
-    "Discover the programmes and initiatives at Golden Heart Orphanage — from education and shelter to development and nutrition.",
+    "Explore 12+ active programs at Golden Heart Orphanage — education, shelter, nutrition, skills development, and community outreach supporting orphaned children across South Africa.",
+  alternates: {
+    canonical: "https://goldenheartorphanage.org/our-work",
+  },
+  openGraph: {
+    title: "Our Programs & Initiatives — Golden Heart Orphanage",
+    description: "12+ programs spanning education, nutrition, shelter, and holistic development for orphaned children.",
+    url: "https://goldenheartorphanage.org/our-work",
+    type: "website",
+    images: ["/og-image.png"],
+  },
 };
 
 const programs = [

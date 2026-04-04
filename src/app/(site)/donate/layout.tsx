@@ -1,13 +1,25 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Donate",
+  title: "Donate to Golden Heart Orphanage — Support Orphaned Children",
   description:
-    "Make a donation to Golden Heart Orphanage. Support orphaned and vulnerable children through daily, weekly, monthly, or one-time contributions.",
+    "Donate to Golden Heart Orphanage via Bitcoin, Ethereum, USDT, or Solana. Every contribution directly supports orphaned children's education, nutrition, and care in South Africa. 95% goes directly to children.",
+  alternates: {
+    canonical: "https://goldenheartorphanage.org/donate",
+  },
   openGraph: {
-    title: "Donate — Golden Heart Orphanage",
+    title: "Donate to Golden Heart Orphanage — Change a Child's Life Today",
     description:
-      "Every contribution directly supports a child's education, care, and development. 95% of funds go directly to children.",
+      "Every contribution directly supports a child's education, care, and development. 95% of funds go directly to children. Accept crypto donations.",
+    url: "https://goldenheartorphanage.org/donate",
+    type: "website",
+    images: ["/og-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Donate to Golden Heart Orphanage",
+    description: "Support 2,400+ orphaned children through education and care in South Africa.",
+    images: ["/og-image.png"],
   },
 };
 

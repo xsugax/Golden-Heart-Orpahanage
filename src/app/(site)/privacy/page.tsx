@@ -2,8 +2,11 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "How Golden Heart Orphanage collects, uses, and protects your personal information.",
+  title: "Privacy Policy — Golden Heart Orphanage",
+  description: "Learn how Golden Heart Orphanage collects, uses, and protects your personal information. Your privacy and data security matter to us.",
+  alternates: {
+    canonical: "https://goldenheartorphanage.org/privacy",
+  },
 };
 
 export default function PrivacyPage() {
