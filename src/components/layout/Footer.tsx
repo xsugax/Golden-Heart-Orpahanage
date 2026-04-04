@@ -65,6 +65,11 @@ function NewsletterForm() {
           <Heart className="w-4 h-4 fill-teal-400" />
           Thank you for subscribing!
         </div>
+      ) : status === "error" ? (
+        <div className="flex items-center gap-2 text-amber-400 text-sm py-2">
+          <ArrowRight className="w-4 h-4" />
+          Couldn&apos;t subscribe right now. Please try again.
+        </div>
       ) : (
         <div className="flex gap-2">
           <input

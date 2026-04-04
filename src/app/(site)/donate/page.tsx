@@ -222,10 +222,10 @@ export default function DonatePage() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        setError(data.error || "Unable to start checkout. Please try again.");
+        setError("We couldn't process that right now. Please try again in a moment.");
       }
     } catch {
-      setError("Connection error. Please check your internet and try again.");
+      setError("Unable to connect. Please check your internet and try again.");
     } finally {
       setLoading(false);
     }
@@ -593,7 +593,7 @@ export default function DonatePage() {
                     </p>
 
                     {error && (
-                      <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+                      <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm">
                         {error}
                       </div>
                     )}

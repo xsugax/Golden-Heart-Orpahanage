@@ -13,22 +13,22 @@ export default function GlobalError({
       <body className="min-h-screen flex items-center justify-center" style={{ background: "#fefcf9", color: "#102a43" }}>
         <div className="max-w-md mx-auto px-6 text-center">
           <div
-            className="w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-            style={{ background: "#102a43" }}
+            className="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center"
+            style={{ background: "linear-gradient(135deg, #f59e0b, #d97706)" }}
           >
-            <span className="text-3xl font-bold text-white">!</span>
+            <span className="text-3xl" style={{ color: "white" }}>♥</span>
           </div>
           <h1 className="text-3xl font-bold mb-3" style={{ color: "#102a43" }}>
-            Something Went Wrong
+            We&apos;ll be right back
           </h1>
           <p className="mb-8" style={{ color: "#475569" }}>
-            We encountered an unexpected error. Please try again.
+            The page didn&apos;t load correctly. This is usually temporary — please try again.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <button
               onClick={() => reset()}
-              className="inline-flex items-center px-6 py-3 text-white font-medium rounded-xl transition-colors"
-              style={{ background: "#102a43" }}
+              className="inline-flex items-center px-6 py-3 text-white font-semibold rounded-xl transition-colors"
+              style={{ background: "#f59e0b" }}
             >
               Try Again
             </button>

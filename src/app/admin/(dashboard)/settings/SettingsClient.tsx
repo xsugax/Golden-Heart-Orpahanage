@@ -57,11 +57,11 @@ export default function SettingsPage() {
         const data = await res.json();
         setMessage({
           type: "error",
-          text: data.error || "Failed to change password.",
+          text: data.error || "Could not update password. Please try again.",
         });
       }
     } catch {
-      setMessage({ type: "error", text: "An error occurred." });
+      setMessage({ type: "error", text: "Unable to connect. Please try again." });
     } finally {
       setSaving(false);
     }

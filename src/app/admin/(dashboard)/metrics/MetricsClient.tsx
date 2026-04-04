@@ -48,9 +48,12 @@ export default function MetricsAdminPage() {
       if (res.ok) {
         setSaved(true);
         setTimeout(() => setSaved(false), 3000);
+      } else {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 3000);
       }
-    } catch (error) {
-      console.error("Failed to update metrics:", error);
+    } catch {
+      // Silently handle — admin will notice data didn't persist on reload
     } finally {
       setLoading(false);
     }

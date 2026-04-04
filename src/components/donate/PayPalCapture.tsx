@@ -47,8 +47,8 @@ export default function PayPalCapture() {
   if (status === "error") {
     return (
       <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm text-center">
-        We received your PayPal payment but could not confirm it automatically.
-        Please contact us if you need assistance.
+        Your payment is being processed. If you don&apos;t see a confirmation within a few minutes,
+        please reach out to us and we&apos;ll sort it out.
       </div>
     );
   }

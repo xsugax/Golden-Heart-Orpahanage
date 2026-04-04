@@ -33,10 +33,10 @@ function LoginForm() {
         router.push(from);
         router.refresh();
       } else {
-        setError(data.error || "Invalid password");
+        setError("Incorrect password. Please try again.");
       }
     } catch {
-      setError("Connection error. Please try again.");
+      setError("Unable to connect. Please check your internet and try again.");
     } finally {
       setLoading(false);
     }
