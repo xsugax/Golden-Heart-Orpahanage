@@ -90,9 +90,9 @@ function generateDonation(id: number, timeIdx: number): Donation {
 }
 
 export default function LiveDonationTicker() {
-  const idRef = useRef(0);
+  const idRef = useRef(2);
   const [donation, setDonation] = useState<Donation>(() =>
-    generateDonation(idRef.current++, 0)
+    generateDonation(1, 0)
   );
 
   const advance = useCallback(() => {

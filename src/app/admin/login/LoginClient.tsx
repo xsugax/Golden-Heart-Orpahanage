@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -126,12 +127,12 @@ function LoginForm() {
 
         {/* Back to site */}
         <div className="text-center mt-6">
-          <a
+          <Link
             href="/"
             className="text-sm text-earth-500 hover:text-earth-300 transition-colors"
           >
             ← Back to Golden Heart Orphanage
-          </a>
+          </Link>
         </div>
       </div>
     </div>

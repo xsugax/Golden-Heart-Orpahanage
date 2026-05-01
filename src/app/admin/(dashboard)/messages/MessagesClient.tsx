@@ -9,7 +9,6 @@ import {
   Eye,
   X,
   Inbox,
-  AlertCircle,
 } from "lucide-react";
 
 interface Message {

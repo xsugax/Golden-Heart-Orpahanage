@@ -10,7 +10,14 @@ export default function Smartsupp() {
     if (pathname.startsWith("/admin")) return;
 
     if (typeof window === "undefined") return;
-    if ((window as any).smartsupp) return;
+
+    type SmartsuppWindow = Window & {
+      _smartsupp?: { key?: string };
+      smartsupp?: { _: unknown[] };
+    };
+    const win = window as SmartsuppWindow;
+
+    if (win.smartsupp) return;
 
     const script = document.createElement("script");
     script.type = "text/javascript";
@@ -18,8 +25,8 @@ export default function Smartsupp() {
     script.src = "https://www.smartsuppchat.com/loader.js?";
     script.charset = "utf-8";
 
-    (window as any)._smartsupp = (window as any)._smartsupp || {};
-    ((window as any)._smartsupp).key = "f12cab583210e0d1fc0834f9f53f193da2a47587";
+    win._smartsupp = win._smartsupp || {};
+    win._smartsupp.key = "f12cab583210e0d1fc0834f9f53f193da2a47587";
 
     document.body.appendChild(script);
 
