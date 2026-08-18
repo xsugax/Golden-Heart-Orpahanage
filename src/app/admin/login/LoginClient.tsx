@@ -30,11 +30,15 @@ function LoginForm() {
 
       const data = await res.json();
 
-      if (data.success) {
+      if (res.ok && data.success) {
         router.push(from);
         router.refresh();
+      } else if (res.status === 401) {
+        setError("Incorrect password.");
+      } else if (typeof data.error === "string" && data.error.trim()) {
+        setError(data.error);
       } else {
-        setError("Incorrect password. Please try again.");
+        setError("Unable to sign in right now.");
       }
     } catch {
       setError("Unable to connect. Please check your internet and try again.");

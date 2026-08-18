@@ -3,6 +3,12 @@
 import { useState, useEffect, FormEvent } from "react";
 import Button from "@/components/ui/Button";
 import { Save } from "lucide-react";
+import {
+  adminFetch,
+  assertAdminOk,
+  AdminNetworkError,
+  AdminUnauthorizedError,
+} from "@/lib/adminApiClient";
 
 interface Metrics {
   id?: string;
@@ -20,7 +26,10 @@ export default function MetricsAdminPage() {
     communitiesReached: 15,
   });
   const [loading, setLoading] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   useEffect(() => {
     fetch("/api/impact")
@@ -36,24 +45,29 @@ export default function MetricsAdminPage() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setLoading(true);
-    setSaved(false);
+    setMessage(null);
 
     try {
-      const res = await fetch("/api/admin/metrics", {
+      const res = await adminFetch("/api/admin/metrics", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(metrics),
       });
-
-      if (res.ok) {
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
-      } else {
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
+      await assertAdminOk(res);
+      setMessage({ type: "success", text: "Metrics updated successfully!" });
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
       }
-    } catch {
-      // Silently handle — admin will notice data didn't persist on reload
+      if (err instanceof AdminNetworkError) {
+        setMessage({ type: "error", text: err.message });
+        return;
+      }
+      if (err instanceof Error) {
+        setMessage({ type: "error", text: err.message });
+        return;
+      }
+      setMessage({ type: "error", text: "Could not update metrics right now." });
     } finally {
       setLoading(false);
     }
@@ -147,9 +161,15 @@ export default function MetricsAdminPage() {
           </div>
         </div>
 
-        {saved && (
-          <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
-            Metrics updated successfully!
+        {message && (
+          <div
+            className={`mt-4 rounded-lg border p-3 text-sm ${
+              message.type === "success"
+                ? "border-green-200 bg-green-50 text-green-800"
+                : "border-red-200 bg-red-50 text-red-700"
+            }`}
+          >
+            {message.text}
           </div>
         )}
 

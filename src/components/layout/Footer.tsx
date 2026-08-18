@@ -68,7 +68,7 @@ function NewsletterForm() {
       ) : status === "error" ? (
         <div className="flex items-center gap-2 text-amber-400 text-sm py-2">
           <ArrowRight className="w-4 h-4" />
-          Couldn&apos;t subscribe right now. Please try again.
+          Couldn&apos;t subscribe right now. Please check back shortly.
         </div>
       ) : (
         <div className="flex gap-2">

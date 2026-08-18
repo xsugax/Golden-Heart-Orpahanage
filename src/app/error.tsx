@@ -14,14 +14,14 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
           We&apos;ll be right back
         </h1>
         <p className="text-slate-500 mb-8 leading-relaxed">
-          Something didn&apos;t load correctly. This is usually temporary — please try again.
+          Something didn&apos;t load correctly. Please reload the page.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
           <button
             onClick={() => reset()}
             className="inline-flex items-center px-6 py-3 bg-amber-500 text-navy-950 font-semibold rounded-xl hover:bg-amber-400 transition-colors"
           >
-            Try Again
+            Reload Page
           </button>
           <Link
             href="/"

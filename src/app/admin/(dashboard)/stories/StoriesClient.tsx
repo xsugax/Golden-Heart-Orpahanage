@@ -3,6 +3,13 @@
 import { useState, useEffect, FormEvent } from "react";
 import { Plus, Trash2, Eye, EyeOff } from "lucide-react";
 import Button from "@/components/ui/Button";
+import {
+  adminFetch,
+  adminFetchJson,
+  assertAdminOk,
+  AdminNetworkError,
+  AdminUnauthorizedError,
+} from "@/lib/adminApiClient";
 
 interface Story {
   id: string;
@@ -22,6 +29,7 @@ export default function StoriesAdminPage() {
     imageUrl: "",
   });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchStories();
@@ -29,11 +37,18 @@ export default function StoriesAdminPage() {
 
   async function fetchStories() {
     try {
-      const res = await fetch("/api/admin/stories");
-      const data = await res.json();
-      setStories(data);
-    } catch (error) {
-      console.error("Failed to fetch stories:", error);
+      const data = await adminFetchJson<Story[]>("/api/admin/stories");
+      setStories(Array.isArray(data) ? data : []);
+      setError(null);
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
+      }
+      if (err instanceof AdminNetworkError) {
+        setError(err.message);
+        return;
+      }
+      setError("Could not load stories right now.");
     }
   }
 
@@ -42,19 +57,30 @@ export default function StoriesAdminPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/admin/stories", {
+      const res = await adminFetch("/api/admin/stories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      await assertAdminOk(res);
 
-      if (res.ok) {
-        setFormData({ title: "", content: "", imageUrl: "" });
-        setShowForm(false);
-        fetchStories();
+      setFormData({ title: "", content: "", imageUrl: "" });
+      setShowForm(false);
+      setError(null);
+      fetchStories();
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
       }
-    } catch (error) {
-      console.error("Failed to create story:", error);
+      if (err instanceof AdminNetworkError) {
+        setError(err.message);
+        return;
+      }
+      if (err instanceof Error) {
+        setError(err.message);
+        return;
+      }
+      setError("Could not create the story.");
     } finally {
       setLoading(false);
     }
@@ -62,24 +88,42 @@ export default function StoriesAdminPage() {
 
   async function togglePublish(id: string, published: boolean) {
     try {
-      await fetch(`/api/admin/stories/${id}`, {
+      const res = await adminFetch(`/api/admin/stories/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ published: !published }),
       });
+      await assertAdminOk(res);
+      setError(null);
       fetchStories();
-    } catch (error) {
-      console.error("Failed to update story:", error);
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
+      }
+      if (err instanceof AdminNetworkError) {
+        setError(err.message);
+        return;
+      }
+      setError("Could not update story visibility.");
     }
   }
 
   async function deleteStory(id: string) {
     if (!confirm("Are you sure you want to delete this story?")) return;
     try {
-      await fetch(`/api/admin/stories/${id}`, { method: "DELETE" });
+      const res = await adminFetch(`/api/admin/stories/${id}`, { method: "DELETE" });
+      await assertAdminOk(res);
+      setError(null);
       fetchStories();
-    } catch (error) {
-      console.error("Failed to delete story:", error);
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
+      }
+      if (err instanceof AdminNetworkError) {
+        setError(err.message);
+        return;
+      }
+      setError("Could not delete the story.");
     }
   }
 
@@ -92,6 +136,12 @@ export default function StoriesAdminPage() {
           Add Story
         </Button>
       </div>
+
+      {error && (
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
       {/* Create Form */}
       {showForm && (

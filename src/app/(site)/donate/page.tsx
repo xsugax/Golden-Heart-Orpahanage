@@ -222,7 +222,7 @@ export default function DonatePage() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        setError("We couldn't process that right now. Please try again in a moment.");
+        setError("We couldn't process that right now. Please check back shortly.");
       }
     } catch {
       setError("Unable to connect. Please check your internet and try again.");

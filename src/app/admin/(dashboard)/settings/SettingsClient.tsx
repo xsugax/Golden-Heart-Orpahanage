@@ -12,6 +12,12 @@ import {
   EyeOff,
   Save,
 } from "lucide-react";
+import {
+  adminFetch,
+  assertAdminOk,
+  AdminNetworkError,
+  AdminUnauthorizedError,
+} from "@/lib/adminApiClient";
 
 export default function SettingsPage() {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -40,7 +46,7 @@ export default function SettingsPage() {
     setSaving(true);
     setMessage(null);
     try {
-      const res = await fetch("/api/admin/settings/password", {
+      const res = await adminFetch("/api/admin/settings/password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -48,20 +54,24 @@ export default function SettingsPage() {
           newPassword,
         }),
       });
-      if (res.ok) {
-        setMessage({ type: "success", text: "Password changed successfully." });
-        setCurrentPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
-      } else {
-        const data = await res.json();
-        setMessage({
-          type: "error",
-          text: data.error || "Could not update password. Please try again.",
-        });
+      await assertAdminOk(res);
+      setMessage({ type: "success", text: "Password changed successfully." });
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
       }
-    } catch {
-      setMessage({ type: "error", text: "Unable to connect. Please try again." });
+      if (err instanceof AdminNetworkError) {
+        setMessage({ type: "error", text: err.message });
+        return;
+      }
+      if (err instanceof Error) {
+        setMessage({ type: "error", text: err.message });
+        return;
+      }
+      setMessage({ type: "error", text: "Could not update password right now." });
     } finally {
       setSaving(false);
     }

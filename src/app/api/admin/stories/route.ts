@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { hasValidAdminSession, unauthorizedAdminResponse } from "@/lib/adminSession";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    if (!hasValidAdminSession(req)) {
+      return unauthorizedAdminResponse();
+    }
+
     if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const stories = await prisma.story.findMany({
       orderBy: { createdAt: "desc" },
@@ -19,6 +24,10 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
+    if (!hasValidAdminSession(req)) {
+      return unauthorizedAdminResponse();
+    }
+
     const body = await req.json();
     const { title, content, imageUrl } = body;
 

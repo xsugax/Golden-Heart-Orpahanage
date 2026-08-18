@@ -10,6 +10,13 @@ import {
   X,
   Inbox,
 } from "lucide-react";
+import {
+  adminFetch,
+  adminFetchJson,
+  assertAdminOk,
+  AdminNetworkError,
+  AdminUnauthorizedError,
+} from "@/lib/adminApiClient";
 
 interface Message {
   id: string;
@@ -28,14 +35,22 @@ export default function MessagesPage() {
   const [selected, setSelected] = useState<Message | null>(null);
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   async function load() {
     try {
-      const res = await fetch("/api/admin/messages");
-      const data = await res.json();
-      if (Array.isArray(data)) setMessages(data);
-    } catch (e) {
-      console.error(e);
+      const data = await adminFetchJson<Message[]>("/api/admin/messages");
+      setMessages(Array.isArray(data) ? data : []);
+      setError(null);
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
+      }
+      if (err instanceof AdminNetworkError) {
+        setError(err.message);
+        return;
+      }
+      setError("Could not load messages right now.");
     } finally {
       setLoading(false);
     }
@@ -46,23 +61,52 @@ export default function MessagesPage() {
   }, []);
 
   async function toggleRead(id: string, read: boolean) {
-    await fetch("/api/admin/messages", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, read }),
-    });
-    setMessages((prev) =>
-      prev.map((m) => (m.id === id ? { ...m, read } : m))
-    );
-    if (selected?.id === id) setSelected({ ...selected, read });
+    try {
+      const res = await adminFetch("/api/admin/messages", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, read }),
+      });
+      await assertAdminOk(res);
+      setMessages((prev) =>
+        prev.map((m) => (m.id === id ? { ...m, read } : m))
+      );
+      if (selected?.id === id) setSelected({ ...selected, read });
+      setError(null);
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
+      }
+      if (err instanceof AdminNetworkError) {
+        setError(err.message);
+        return;
+      }
+      setError("Could not update message status.");
+    }
   }
 
   async function deleteMessage(id: string) {
     setDeleting(id);
-    await fetch(`/api/admin/messages?id=${id}`, { method: "DELETE" });
-    setMessages((prev) => prev.filter((m) => m.id !== id));
-    if (selected?.id === id) setSelected(null);
-    setDeleting(null);
+    try {
+      const res = await adminFetch(`/api/admin/messages?id=${id}`, {
+        method: "DELETE",
+      });
+      await assertAdminOk(res);
+      setMessages((prev) => prev.filter((m) => m.id !== id));
+      if (selected?.id === id) setSelected(null);
+      setError(null);
+    } catch (err) {
+      if (err instanceof AdminUnauthorizedError) {
+        return;
+      }
+      if (err instanceof AdminNetworkError) {
+        setError(err.message);
+        return;
+      }
+      setError("Could not delete the message.");
+    } finally {
+      setDeleting(null);
+    }
   }
 
   function openMessage(msg: Message) {
@@ -94,6 +138,12 @@ export default function MessagesPage() {
           </p>
         </div>
       </div>
+
+      {error && (
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-6">

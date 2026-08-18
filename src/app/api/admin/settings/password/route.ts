@@ -1,7 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { hasValidAdminSession, unauthorizedAdminResponse } from "@/lib/adminSession";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
+    if (!hasValidAdminSession(request)) {
+      return unauthorizedAdminResponse();
+    }
+
     const { currentPassword, newPassword } = await request.json();
 
     if (!currentPassword || !newPassword) {

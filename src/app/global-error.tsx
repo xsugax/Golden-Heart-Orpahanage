@@ -22,7 +22,7 @@ export default function GlobalError({
             We&apos;ll be right back
           </h1>
           <p className="mb-8" style={{ color: "#475569" }}>
-            The page didn&apos;t load correctly. This is usually temporary — please try again.
+            The page didn&apos;t load correctly. Please reload the page.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <button
@@ -30,7 +30,7 @@ export default function GlobalError({
               className="inline-flex items-center px-6 py-3 text-white font-semibold rounded-xl transition-colors"
               style={{ background: "#f59e0b" }}
             >
-              Try Again
+              Reload Page
             </button>
             <Link
               href="/"

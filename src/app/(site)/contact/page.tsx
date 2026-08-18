@@ -216,8 +216,8 @@ export default function ContactPage() {
 
                   {status === "error" && (
                     <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm">
-                      Your message couldn&apos;t be sent right now. Please try again
-                      or email us directly at goldenheartorphanage01@gmail.com.
+                      Your message couldn&apos;t be sent right now. Please email us
+                      directly at goldenheartorphanage01@gmail.com.
                     </div>
                   )}
 

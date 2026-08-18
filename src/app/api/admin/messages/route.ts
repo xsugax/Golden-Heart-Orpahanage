@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { hasValidAdminSession, unauthorizedAdminResponse } from "@/lib/adminSession";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    if (!hasValidAdminSession(req)) {
+      return unauthorizedAdminResponse();
+    }
+
     if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const messages = await prisma.contactMessage.findMany({
       orderBy: { createdAt: "desc" },
@@ -19,6 +24,10 @@ export async function GET() {
 
 export async function PATCH(req: NextRequest) {
   try {
+    if (!hasValidAdminSession(req)) {
+      return unauthorizedAdminResponse();
+    }
+
     const body = await req.json();
     const { id, read } = body;
 
@@ -47,6 +56,10 @@ export async function PATCH(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   try {
+    if (!hasValidAdminSession(req)) {
+      return unauthorizedAdminResponse();
+    }
+
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
 

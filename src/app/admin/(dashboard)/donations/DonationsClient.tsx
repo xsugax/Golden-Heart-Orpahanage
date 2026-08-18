@@ -8,6 +8,11 @@ import {
   Filter,
   ArrowUpDown,
 } from "lucide-react";
+import {
+  adminFetchJson,
+  AdminNetworkError,
+  AdminUnauthorizedError,
+} from "@/lib/adminApiClient";
 
 interface Donation {
   id: string;
@@ -27,15 +32,29 @@ export default function DonationsPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/api/admin/donations")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) setDonations(data);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    async function loadDonations() {
+      try {
+        const data = await adminFetchJson<Donation[]>("/api/admin/donations");
+        setDonations(Array.isArray(data) ? data : []);
+        setError(null);
+      } catch (err) {
+        if (err instanceof AdminUnauthorizedError) {
+          return;
+        }
+        if (err instanceof AdminNetworkError) {
+          setError(err.message);
+          return;
+        }
+        setError("Could not load donations right now.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadDonations();
   }, []);
 
   const filtered = donations.filter((d) => {
@@ -87,6 +106,12 @@ export default function DonationsPage() {
           Export CSV
         </button>
       </div>
+
+      {error && (
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-6">

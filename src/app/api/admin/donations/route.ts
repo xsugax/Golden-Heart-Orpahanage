@@ -1,8 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { hasValidAdminSession, unauthorizedAdminResponse } from "@/lib/adminSession";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    if (!hasValidAdminSession(req)) {
+      return unauthorizedAdminResponse();
+    }
+
     if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
     const donations = await prisma.donation.findMany({
       orderBy: { createdAt: "desc" },

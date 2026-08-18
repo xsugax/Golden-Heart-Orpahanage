@@ -64,9 +64,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             >
               ← View Live Site
             </Link>
-            <form action="/api/admin/logout" method="POST">
-              <LogoutButton />
-            </form>
+            <LogoutButton />
           </div>
         </aside>
 

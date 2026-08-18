@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { hasValidAdminSession, unauthorizedAdminResponse } from "@/lib/adminSession";
 
 export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!hasValidAdminSession(req)) {
+      return unauthorizedAdminResponse();
+    }
+
     const { id } = await params;
     const body = await req.json();
 
@@ -30,6 +35,10 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!hasValidAdminSession(_req)) {
+      return unauthorizedAdminResponse();
+    }
+
     const { id } = await params;
 
     if (!prisma) return NextResponse.json({ error: "Database not configured" }, { status: 503 });
