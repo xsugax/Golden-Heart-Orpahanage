@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import JsonLd from "@/components/seo/JsonLd";
+import Smartsupp from "@/components/Smartsupp";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -289,23 +290,7 @@ export default function RootLayout({
 
         <JsonLd />
         {children}
-        {/* Smartsupp Live Chat — hidden on /admin pages */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if(!window.location.pathname.startsWith('/admin')){
-              var _smartsupp = _smartsupp || {};
-              _smartsupp.key = 'f12cab583210e0d1fc0834f9f53f193da2a47587';
-              window.smartsupp||(function(d) {
-                var s,c,o=smartsupp=function(){ o._.push(arguments)}; o._=[];
-                s=d.getElementsByTagName('script')[0]; c=d.createElement('script');
-                c.type='text/javascript'; c.charset='utf-8'; c.async=true;
-                c.src='https://www.smartsuppchat.com/loader.js?'; s.parentNode.insertBefore(c,s);
-              })(document);
-              }
-            `,
-          }}
-        />
+        <Smartsupp />
       </body>
     </html>
   );
