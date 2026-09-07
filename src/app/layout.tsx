@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import JsonLd from "@/components/seo/JsonLd";
-import Smartsupp from "@/components/Smartsupp";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -129,7 +128,7 @@ export default function RootLayout({
             position: "fixed",
             inset: 0,
             zIndex: 99999,
-            display: "flex",
+            display: "none",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
@@ -272,25 +271,8 @@ export default function RootLayout({
           </div>
         </div>
 
-        {/* Splash auto-dismiss script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(){
-                var s=document.getElementById('splash');
-                if(!s)return;
-                function hide(){s.classList.add('sp-hide');setTimeout(function(){s.remove()},700)}
-                if(document.readyState==='complete'){setTimeout(hide,400)}
-                else{window.addEventListener('load',function(){setTimeout(hide,400)})}
-                setTimeout(hide,6000);
-              })();
-            `,
-          }}
-        />
-
         <JsonLd />
         {children}
-        <Smartsupp />
       </body>
     </html>
   );

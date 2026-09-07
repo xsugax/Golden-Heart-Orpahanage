@@ -91,9 +91,13 @@ function generateDonation(id: number, timeIdx: number): Donation {
 
 export default function LiveDonationTicker() {
   const idRef = useRef(2);
-  const [donation, setDonation] = useState<Donation>(() =>
-    generateDonation(1, 0)
-  );
+  const [donation, setDonation] = useState<Donation>({
+    id: 1,
+    name: "Sarah M.",
+    city: "Johannesburg",
+    amount: 250,
+    time: "just now",
+  });
 
   const advance = useCallback(() => {
     const timeIdx = Math.floor(Math.random() * 4); // mostly recent
