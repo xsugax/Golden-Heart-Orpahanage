@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import JsonLd from "@/components/seo/JsonLd";
-import Smartsupp from "@/components/Smartsupp";
+import Tidio from "@/components/Tidio";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -119,7 +119,7 @@ export default function RootLayout({
         <meta name="geo.position" content="-26.2041;28.0473" />
         <meta name="ICBM" content="-26.2041, 28.0473" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.smartsuppchat.com" />
+        <link rel="preconnect" href="https://code.tidio.co" />
       </head>
       <body className="min-h-full flex flex-col">
         {/* Premium Splash Screen — renders instantly from server HTML */}
@@ -273,7 +273,7 @@ export default function RootLayout({
         </div>
 
         <JsonLd />
-        <Smartsupp />
+        <Tidio />
         {children}
       </body>
     </html>
