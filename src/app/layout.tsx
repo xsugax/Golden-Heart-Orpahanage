@@ -38,8 +38,6 @@ export const metadata: Metadata = {
     "Johannesburg orphanage",
     "vulnerable children support",
     "child welfare organization",
-    "donate crypto charity",
-    "Bitcoin donation orphanage",
     "charity for children Africa",
     "orphan care programs",
     "Golden Heart",
@@ -92,10 +90,15 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   category: "charity",
+  authors: [{ name: "Golden Heart Orphanage" }],
   other: {
     "theme-color": "#0a1929",
     "google-site-verification": "pending",
     "msvalidate.01": "pending",
+    "geo.region": "ZA-GP",
+    "geo.placename": "Johannesburg",
+    "geo.position": "-26.2041;28.0473",
+    ICBM: "-26.2041, 28.0473",
   },
 };
 
@@ -109,19 +112,10 @@ export default function RootLayout({
       lang="en"
       dir="ltr"
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <head>
-        <link rel="canonical" href="https://goldenheartorphanage.org" />
-        <meta name="author" content="Golden Heart Orphanage" />
-        <meta name="geo.region" content="ZA-GP" />
-        <meta name="geo.placename" content="Johannesburg" />
-        <meta name="geo.position" content="-26.2041;28.0473" />
-        <meta name="ICBM" content="-26.2041, 28.0473" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://code.tidio.co" />
-      </head>
-      <body className="min-h-full flex flex-col">
+      <body suppressHydrationWarning className="min-h-full flex flex-col">
         {/* Premium Splash Screen — renders instantly from server HTML */}
         <div
           id="splash"

@@ -91,6 +91,7 @@ function generateDonation(id: number, timeIdx: number): Donation {
 
 export default function LiveDonationTicker() {
   const idRef = useRef(2);
+  const [ready, setReady] = useState(false);
   const [donation, setDonation] = useState<Donation>({
     id: 1,
     name: "Sarah M.",
@@ -105,6 +106,7 @@ export default function LiveDonationTicker() {
   }, []);
 
   useEffect(() => {
+    setReady(true);
     const interval = setInterval(advance, 4000);
     return () => clearInterval(interval);
   }, [advance]);
@@ -121,7 +123,7 @@ export default function LiveDonationTicker() {
           <AnimatePresence mode="wait">
             <motion.div
               key={donation.id}
-              initial={{ y: 20, opacity: 0 }}
+              initial={ready ? { y: 20, opacity: 0 } : false}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
               transition={{ duration: 0.3 }}

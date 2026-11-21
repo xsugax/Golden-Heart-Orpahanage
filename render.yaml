@@ -3,7 +3,9 @@ services:
     name: golden-heart-orphanage
     runtime: docker
     region: oregon
-    plan: free
+    # Starter stays running. The free plan spins down after 15 minutes idle.
+    plan: starter
+    healthCheckPath: /api/health
     envVars:
       - key: DATABASE_URL
         sync: false

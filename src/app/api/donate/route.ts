@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   return NextResponse.json(
-    { error: "Please use our cryptocurrency donation option.", redirect: "/donate" },
-    { status: 200 }
+    { error: "Checkout starts on the donate page.", redirect: "/donate" },
+    { status: 400 }
   );
 }

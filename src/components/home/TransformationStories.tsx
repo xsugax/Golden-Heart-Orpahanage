@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Link from "next/link";
@@ -88,6 +88,11 @@ const transformations = [
 export default function TransformationStories() {
   const [active, setActive] = useState(0);
   const [showAfter, setShowAfter] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
   const story = transformations[active];
   const current = showAfter ? story.after : story.before;
@@ -133,7 +138,7 @@ export default function TransformationStories() {
           <AnimatePresence mode="wait">
             <motion.div
               key={`${active}-${showAfter}`}
-              initial={{ opacity: 0, x: showAfter ? 40 : -40 }}
+              initial={ready ? { opacity: 0, x: showAfter ? 40 : -40 } : false}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: showAfter ? -40 : 40 }}
               transition={{ duration: 0.4 }}

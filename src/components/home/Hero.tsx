@@ -39,7 +39,7 @@ export default function Hero() {
         <div className="max-w-2xl">
           {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={false}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="inline-flex items-center gap-2.5 bg-white/8 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 text-sm mb-8"
@@ -57,7 +57,7 @@ export default function Hero() {
 
           {/* Headline */}
           <motion.h1
-            initial={{ opacity: 0, y: 25 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.75rem] font-extrabold text-white leading-[1.08] tracking-tight mb-6"
@@ -92,7 +92,7 @@ export default function Hero() {
 
           {/* Subheading */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
             className="text-lg md:text-xl text-navy-200/90 leading-relaxed mb-10 max-w-lg"
@@ -103,7 +103,7 @@ export default function Hero() {
 
           {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
             className="flex flex-wrap gap-4 mb-12"
@@ -127,7 +127,7 @@ export default function Hero() {
 
           {/* Trust indicators row */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px] text-navy-300"
@@ -150,7 +150,7 @@ export default function Hero() {
 
       {/* Bottom Stats Bar */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
         className="absolute bottom-0 left-0 right-0 bg-navy-950/70 backdrop-blur-xl border-t border-white/[0.06]"

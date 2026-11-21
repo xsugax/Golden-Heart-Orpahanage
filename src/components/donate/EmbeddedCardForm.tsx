@@ -23,7 +23,7 @@ export default function EmbeddedCardForm({
       </h3>
       <p className="text-slate-600 max-w-md mx-auto">
         Secure card payment processing is being set up. In the meantime, please
-        use PayPal or Crypto to make your ${amount.toLocaleString()}
+        use PayPal to make your ${amount.toLocaleString()}
         {frequencyUnit} donation.
       </p>
       <div className="flex items-center justify-center gap-6 text-xs text-slate-400 pt-2">

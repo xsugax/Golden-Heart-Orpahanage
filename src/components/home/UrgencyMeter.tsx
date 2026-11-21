@@ -63,7 +63,7 @@ export default function UrgencyMeter() {
                   </div>
                 </div>
                 <motion.p
-                  initial={{ scale: 0.5, opacity: 0 }}
+                  initial={false}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ type: "spring", delay: index * 0.1 + 0.2 }}

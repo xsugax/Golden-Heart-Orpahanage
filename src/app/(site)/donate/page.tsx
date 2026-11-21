@@ -15,13 +15,7 @@ import {
   Users,
   Shield,
   Zap,
-  Bitcoin,
-  Copy,
-  ExternalLink,
-  MessageCircle,
 } from "lucide-react";
-
-type PaymentMethod = "crypto";
 
 type Frequency = "one-time" | "daily" | "weekly" | "monthly";
 
@@ -147,65 +141,20 @@ export default function DonatePage() {
   const [selectedAmount, setSelectedAmount] = useState<number>(10);
   const [customAmount, setCustomAmount] = useState("");
   const [isCustom, setIsCustom] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("crypto");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [copied, setCopied] = useState("");
 
   const currentTiers = tiers[frequency];
   const activeAmount = isCustom ? Number(customAmount) || 0 : selectedAmount;
   const entries = getEntries(activeAmount, frequency);
 
-  const cryptoWallets = [
-    {
-      name: "Bitcoin (BTC)",
-      symbol: "BTC",
-      address: "bc1qdpqyxrv428qp4vdlq0hpudmrpmgs5x9qcyhfa5",
-      network: "Bitcoin Network",
-      color: "bg-orange-500",
-      icon: "₿",
-    },
-    {
-      name: "Ethereum (ETH)",
-      symbol: "ETH",
-      address: "0x14BeaCB76970C7aD354f35aB1ca21F0e2f826cff",
-      network: "ERC-20 Network",
-      color: "bg-indigo-500",
-      icon: "Ξ",
-    },
-    {
-      name: "USDT (Tether)",
-      symbol: "USDT",
-      address: "2FbNJXqoyxfXwpe1ycT4FG5bu3RP1vckT7qSWV4zVpMD",
-      network: "Solana Network",
-      color: "bg-emerald-500",
-      icon: "₮",
-    },
-    {
-      name: "Solana (SOL)",
-      symbol: "SOL",
-      address: "2FbNJXqoyxfXwpe1ycT4FG5bu3RP1vckT7qSWV4zVpMD",
-      network: "Solana Network",
-      color: "bg-purple-500",
-      icon: "◎",
-    },
-  ];
-
-  function copyToClipboard(text: string, label: string) {
-    navigator.clipboard.writeText(text);
-    setCopied(label);
-    setTimeout(() => setCopied(""), 2000);
-  }
-
   async function handleDonate() {
-    // Crypto is the only payment method
-    if (paymentMethod !== "crypto") return;
+    if (activeAmount < 1) return;
     setLoading(true);
     setError("");
 
     try {
-      const endpoint = "/api/donate/crypto";
-      const res = await fetch(endpoint, {
+      const res = await fetch("/api/donate/paypal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -222,7 +171,10 @@ export default function DonatePage() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        setError("We couldn't process that right now. Please check back shortly.");
+        setError(
+          data.error ||
+            "We couldn't start checkout right now. Please try again in a moment."
+        );
       }
     } catch {
       setError("Unable to connect. Please check your internet and try again.");
@@ -270,7 +222,7 @@ export default function DonatePage() {
                 <Shield className="w-4 h-4 text-teal-400" /> Secure Payments
               </span>
               <span className="flex items-center gap-1.5">
-                <Bitcoin className="w-4 h-4 text-teal-400" /> Bitcoin & Crypto
+                <Zap className="w-4 h-4 text-teal-400" /> PayPal Checkout
               </span>
               <span className="flex items-center gap-1.5">
                 <Zap className="w-4 h-4 text-teal-400" /> Tax Deductible
@@ -514,187 +466,57 @@ export default function DonatePage() {
                 </div>
               )}
 
-              {/* Step 3: Payment */}
-              <div className="p-6 md:p-8 border-b border-slate-100">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center text-sm font-bold">
-                    3
-                  </div>
-                  <h2 className="text-xl font-semibold text-navy-900">
-                    Send Your Donation via Crypto
-                  </h2>
-                </div>
-
-                <div className="p-4 bg-teal-50 border border-teal-200 rounded-xl mb-6">
-                  <div className="flex items-start gap-3">
-                    <Bitcoin className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium text-teal-800">We accept cryptocurrency donations</p>
-                      <p className="text-sm text-teal-700 mt-1">
-                        Send BTC, ETH, USDT, or SOL to the wallet addresses below.
-                        For other payment methods, please{" "}
-                        <a href="mailto:goldenheartorphanage01@gmail.com" className="font-semibold underline">contact our support team</a>{" "}
-                        or use the live chat.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="hidden">{/* Crypto is the only method */}
-                  <button
-                    onClick={() => setPaymentMethod("crypto")}
-                    className={`relative p-5 rounded-xl border-2 text-left transition-all ${
-                      paymentMethod === "crypto"
-                        ? "border-amber-500 bg-amber-50 ring-2 ring-amber-200"
-                        : "border-slate-200 hover:border-amber-300"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center">
-                        <Bitcoin className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-navy-900">Cryptocurrency</p>
-                        <p className="text-xs text-slate-500">BTC, ETH, USDT, SOL</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <Zap className="w-3 h-3" />
-                      <span>Decentralized • Fast • Low fees</span>
-                    </div>
-                    {paymentMethod === "crypto" && (
-                      <div className="absolute top-3 right-3 w-5 h-5 bg-amber-500 rounded-full flex items-center justify-center">
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Step 4: Checkout */}
+              {/* Step 3: Checkout */}
               <div className="p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-8 h-8 rounded-full bg-navy-900 text-white flex items-center justify-center text-sm font-bold">
-                    4
+                    3
                   </div>
                   <h2 className="text-xl font-semibold text-navy-900">
                     Complete Your Donation
                   </h2>
                 </div>
 
-                  <>
-                    <p className="text-sm text-slate-600 mb-6">
-                      Send{" "}
-                      <strong className="text-navy-900">
-                        ${activeAmount.toLocaleString()}
-                      </strong>{" "}
-                      equivalent in crypto to one of the wallet addresses below.
-                      After sending, your donation will be confirmed automatically.
-                    </p>
+                <p className="text-sm text-slate-600 mb-6">
+                  You&apos;ll be taken to PayPal to securely complete your{" "}
+                  <strong className="text-navy-900">
+                    ${activeAmount.toLocaleString()}
+                    {frequencyUnit}
+                  </strong>{" "}
+                  gift. PayPal accepts debit and credit cards as well as a PayPal balance.
+                </p>
 
-                    {error && (
-                      <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm">
-                        {error}
-                      </div>
-                    )}
+                {error && (
+                  <div className="mb-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-sm">
+                    {error}
+                  </div>
+                )}
 
-                    <div className="space-y-3 mb-6">
-                      {cryptoWallets.map((wallet) => (
-                        <div
-                          key={wallet.symbol}
-                          className="bg-slate-50 border border-slate-200 rounded-xl p-4"
-                        >
-                          <div className="flex items-center justify-between mb-2">
-                            <div className="flex items-center gap-2">
-                              <div
-                                className={`w-8 h-8 ${wallet.color} rounded-lg flex items-center justify-center text-white font-bold text-sm`}
-                              >
-                                {wallet.icon}
-                              </div>
-                              <div>
-                                <p className="text-sm font-semibold text-navy-900">
-                                  {wallet.name}
-                                </p>
-                                <p className="text-[10px] text-slate-500">
-                                  {wallet.network}
-                                </p>
-                              </div>
-                            </div>
-                            <button
-                              onClick={() =>
-                                copyToClipboard(wallet.address, wallet.symbol)
-                              }
-                              className="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-navy-700 hover:bg-amber-50 hover:border-amber-300 transition-all"
-                            >
-                              {copied === wallet.symbol ? (
-                                <>
-                                  <Check className="w-3 h-3 text-emerald-500" />
-                                  Copied!
-                                </>
-                              ) : (
-                                <>
-                                  <Copy className="w-3 h-3" />
-                                  Copy Address
-                                </>
-                              )}
-                            </button>
-                          </div>
-                          <p className="text-xs font-mono text-slate-600 break-all bg-white rounded-lg px-3 py-2 border border-slate-100">
-                            {wallet.address}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+                <Button
+                  onClick={handleDonate}
+                  disabled={loading || activeAmount < 1}
+                  size="lg"
+                  className="w-full text-lg py-4"
+                >
+                  {loading ? (
+                    "Connecting to PayPal..."
+                  ) : (
+                    <>
+                      <Heart className="w-5 h-5 mr-2 fill-white" />
+                      Donate with PayPal
+                    </>
+                  )}
+                </Button>
 
-                    <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg mb-4">
-                      <p className="text-sm text-amber-800">
-                        <strong>Important:</strong> Only send the listed
-                        cryptocurrency to these addresses on the correct
-                        network. Sending the wrong token or using the wrong
-                        network may result in permanent loss of funds.
-                      </p>
-                    </div>
-
-                    <Button
-                      onClick={handleDonate}
-                      disabled={loading || activeAmount < 1}
-                      size="lg"
-                      className="w-full text-lg py-4"
-                    >
-                      {loading ? (
-                        "Processing..."
-                      ) : (
-                        <>
-                          <ExternalLink className="w-5 h-5 mr-2" />
-                          I&apos;ve Sent My Crypto Donation
-                        </>
-                      )}
-                    </Button>
-
-                    <div className="flex items-center justify-center gap-4 mt-4 text-xs text-slate-500">
-                      <span className="flex items-center gap-1">
-                        <Shield className="w-3 h-3" /> Verified Wallets
-                      </span>
-                      <span>•</span>
-                      <span>BTC • ETH • USDT • SOL</span>
-                      <span>•</span>
-                      <span>Tax Deductible</span>
-                    </div>
-
-                    <div className="mt-6 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                      <div className="flex items-start gap-3">
-                        <MessageCircle className="w-5 h-5 text-navy-600 shrink-0 mt-0.5" />
-                        <div>
-                          <p className="text-sm font-medium text-navy-800">Want to donate using a different method?</p>
-                          <p className="text-sm text-slate-600 mt-1">
-                            Contact our support team via{" "}
-                            <a href="mailto:goldenheartorphanage01@gmail.com" className="text-amber-600 font-semibold underline">email</a>{" "}
-                            or use the live chat widget to discuss alternative donation options.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </>
+                <div className="flex items-center justify-center gap-4 mt-4 text-xs text-slate-500">
+                  <span className="flex items-center gap-1">
+                    <Shield className="w-3 h-3" /> Secure checkout
+                  </span>
+                  <span>•</span>
+                  <span>Cards & PayPal</span>
+                  <span>•</span>
+                  <span>Tax Deductible</span>
+                </div>
               </div>
             </div>
           </AnimatedSection>
@@ -705,7 +527,7 @@ export default function DonatePage() {
               <Card className="text-center py-5">
                 <Shield className="w-6 h-6 text-teal-500 mx-auto mb-2" />
                 <p className="text-sm font-semibold text-navy-800">100% Secure</p>
-                <p className="text-xs text-slate-500">Verified Wallets</p>
+                <p className="text-xs text-slate-500">PayPal Checkout</p>
               </Card>
               <Card className="text-center py-5">
                 <Heart className="w-6 h-6 text-teal-500 mx-auto mb-2 fill-teal-200" />

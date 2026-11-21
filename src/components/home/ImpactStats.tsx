@@ -11,13 +11,19 @@ const stats = [
 ];
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(value);
 
   useEffect(() => {
-    const duration = 2000;
-    const steps = 60;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setCount(value);
+      return;
+    }
+
+    const duration = 1200;
+    const steps = 40;
     const increment = value / steps;
     let current = 0;
+    setCount(0);
     const timer = setInterval(() => {
       current += increment;
       if (current >= value) {

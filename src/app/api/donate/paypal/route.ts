@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     const order = await createPayPalOrder(
       amount,
       description,
-      `${baseUrl}/donate/success?${params.toString()}&token=`,
+      `${baseUrl}/donate/success?${params.toString()}`,
       `${baseUrl}/donate`
     );
 

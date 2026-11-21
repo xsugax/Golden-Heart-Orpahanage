@@ -40,6 +40,11 @@ const quotes = [
 
 export default function EmotionalQuotes() {
   const [active, setActive] = useState(0);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -72,7 +77,7 @@ export default function EmotionalQuotes() {
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              initial={{ opacity: 0, y: 30 }}
+              initial={ready ? { opacity: 0, y: 30 } : false}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
               transition={{ duration: 0.5 }}

@@ -250,7 +250,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-navy-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-[11px] text-navy-600">
+          <p className="text-[11px] text-navy-600" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} Golden Heart Orphanage. All rights reserved.
           </p>
           <p className="text-[11px] text-navy-600">
