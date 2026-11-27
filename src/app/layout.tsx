@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import JsonLd from "@/components/seo/JsonLd";
-import Tidio from "@/components/Tidio";
+import Smartsupp from "@/components/Smartsupp";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -267,7 +267,7 @@ export default function RootLayout({
         </div>
 
         <JsonLd />
-        <Tidio />
+        <Smartsupp />
         {children}
       </body>
     </html>
